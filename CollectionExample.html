@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		
+		<title>Backbone Tutorial (Collections)</title>
+
+		<script src="jquery-1.11.2.js" type="text/javascript"></script>
+		<script src="underscore.js" type="text/javascript"></script>
+		<script src="backbone.js" type="text/javascript"></script>
+
+	</head>
+	<body>
+
+		<!-- Backbone App -->
+		<script type="text/javascript">
+
+			Student = Backbone.Model.extend({
+				defaults: {
+					name: '',
+					age: 0
+				}
+			});
+
+			ClassRoom = Backbone.Collection.extend({
+				model: Student
+			});
+
+			var student1 = new Student({name: 'Student A', age: 18});
+			var student2 = new Student({name: 'Student B', age: 28});
+			var student3 = new Student({name: 'Student C', age: 38});
+
+			var collection = new ClassRoom([student1, student2, student3]);
+
+			console.log(collection.toJSON());
+
+		</script>	
+
+	</body>
+</html>
