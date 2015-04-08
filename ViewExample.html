@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		
+		<title>Backbone Tutorial (View)</title>
+
+		<script src="jquery-1.11.2.js" type="text/javascript"></script>
+		<script src="underscore.js" type="text/javascript"></script>
+		<script src="backbone.js" type="text/javascript"></script>
+
+	</head>
+	<body>
+
+		<script id="scrTemplate" type="text/template">
+			<label>Task: </label>
+			<input id="tbxInput" type="text" />
+			<input id="btnAddTask" type="button" value="Add Task" />
+		</script>
+
+		<div id="divContainer"></div>
+
+		<!-- Backbone App -->
+		<script type="text/javascript">
+
+			// Task View.
+			Task = Backbone.View.extend({
+				element: $('#divContainer'),
+				initialize: function(){
+					this.render();
+				},
+				render: function(){
+					var template = _.template($('#scrTemplate').html(), {});
+					this.$el.html(template);
+				}
+			});
+
+		</script>	
+
+	</body>
+</html>
