@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		
+		<title>Backbone Tutorial (Routing)</title>
+
+		<script src="jquery-1.11.2.js" type="text/javascript"></script>
+		<script src="underscore.js" type="text/javascript"></script>
+		<script src="backbone.js" type="text/javascript"></script>
+
+	</head>
+	<body>
+
+		<script id="scrFirstView" type="text/template">
+			<label>My 1st View</label>
+			<br />
+			<a href="#second">Go to 2nd View</a>
+		</script>
+
+		<script id="scrSecondView" type="text/template">
+			<label>My 2nd View</label>
+			<br />
+			<a href="#first">Go to 1st View</a>
+		</script>
+
+		<div id="divContainer"></div>
+
+		<!-- Backbone App -->
+		<script type="text/javascript">
+
+			FirstView = Backbone.View.extend({
+				el: $('#divContainer'),
+				initialize: function() {
+					this.render();
+				},
+				render: function(){
+					var template = _.template($('#scrFirstView').html(), {});
+					this.$el.html(template);
+				}
+			});
+
+
+			SecondView = Backbone.View.extend({
+				el: $('#divContainer'),
+				initialize: function(){
+					this.render();
+				},
+				render: function(){
+					var template = _.template($('#scrSecondView').html(), {});
+					this.$el.html(template);
+				}
+			});
+
+
+			CustomRouter = Backbone.Router.extend({
+				routes: {
+					'': 'firstPage',
+					'first': 'firstPage',
+					'second': 'secondPage'
+				},
+				firstPage: function(){
+					new FirstView();
+				},
+				secondPage: function(){
+					new SecondView();
+				}
+
+			});
+
+			var router = new CustomRouter();
+			Backbone.history.start();
+
+		</script>	
+
+	</body>
+</html>
